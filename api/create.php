@@ -15,9 +15,9 @@ header('X-Robots-Tag: noindex, nofollow');
 
 // Only allow POST requests
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    // http_response_code(405);
-    // echo json_encode(['error' => 'Method not allowed']);
-    // exit;
+    http_response_code(405);
+    echo json_encode(['error' => 'Method not allowed']);
+    exit;
 }
 
 // Rate limiting
@@ -37,9 +37,9 @@ try {
         $input = $_POST;
     }
 
-    // Validate CSRF token
-    if (!isset($input['csrf_token']) || !validateCSRFToken($input['csrf_token'])) {
-        // throw new Exception('Invalid CSRF token');
+    // Check CSRF token
+    if (!isset($input['csrf_token'])) {
+        throw new Exception('Invalid CSRF token');
     }
 
     // Validate required fields
