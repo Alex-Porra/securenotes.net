@@ -11,7 +11,7 @@
 ---
 
 ## Features
-
+ 
 ### **Security First**
 - **End-to-End Encryption**: Military-grade AES-256 encryption for all notes
 - **Self-Destructing**: Notes automatically destroy after being viewed or expiring
