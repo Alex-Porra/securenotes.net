@@ -1,0 +1,10 @@
+/.DS_Store
+/.env
+/.vscode
+/.well-known
+/config
+/ltk.txt
+/sitemap.xml
+/sitemap_blog.xml
+/test-schema.php
+/tester.php

@@ -1,0 +1,152 @@
+# Enable URL Rewriting
+RewriteEngine On
+
+# Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+
+ErrorDocument 404 /404.php
+ErrorDocument 500 /500.php
+ErrorDocument 403 /403.php
+# URL Routing
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Legal Pages
+RewriteRule ^landing/?$ /landing.php [L,QSA]
+RewriteRule ^faq/?$ /faq.php [L,QSA]
+RewriteRule ^privacy/?$ /privacy.php [L,QSA]
+RewriteRule ^cookies/?$ /cookies.php [L,QSA]
+RewriteRule ^terms/?$ /terms.php [L,QSA]
+RewriteRule ^api-docs/?$ /api-docs.php [L,QSA]
+RewriteRule ^login/?$ /login.php [L,QSA]
+# Blog Pages
+RewriteRule ^blog-admin/?$ /blog-admin.php [L,QSA]
+RewriteRule ^blog/?$ /blog.php [L,QSA]
+RewriteRule ^blog/([a-zA-Z0-9-_]+)/?$ /blog-post.php?slug=$1 [L,QSA]
+# Stats Page
+RewriteRule ^stats/?$ /stats.php [L,QSA]
+
+RewriteRule ^([a-zA-Z0-9-_]+)/?$ /view.php?id=$1 [L,QSA]
+
+
+# API Routes
+RewriteRule ^api/create/?$ /api/create.php [L,QSA]
+RewriteRule ^api/view/([a-zA-Z0-9-_]+)/?$ /api/view.php?id=$1 [L,QSA]
+# SecureNotes .htaccess Configuration
+
+
+
+
+
+# Security Headers
+<IfModule mod_headers.c>
+    # Prevent MIME type sniffing
+    Header always set X-Content-Type-Options nosniff
+    
+    # Enable XSS protection
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Prevent clickjacking
+    Header always set X-Frame-Options SAMEORIGIN
+    
+    # Strict Transport Security (HSTS)
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    
+    # Content Security Policy
+    # Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' cdn.jsdelivr.net cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' cdn.jsdelivr.net fonts.googleapis.com; font-src 'self' fonts.gstatic.com cdn.jsdelivr.net; img-src 'self' data:; connect-src 'self'"
+Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' cdn.jsdelivr.net cdnjs.cloudflare.com cdnjs.buymeacoffee.com https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net; style-src 'self' 'unsafe-inline' cdn.jsdelivr.net cdnjs.cloudflare.com fonts.googleapis.com https://www.google.com https://www.gstatic.com https://fonts.googleapis.com; font-src 'self' fonts.gstatic.com cdn.jsdelivr.net https://fonts.gstatic.com; img-src 'self' data: cdnjs.buymeacoffee.com cdn.buymeacoffee.com https://www.google.com https://www.gstatic.com https://www.google-analytics.com https://ssl.google-analytics.com https://www.googletagmanager.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net; connect-src 'self' https://www.google.com https://www.gstatic.com https://www.google-analytics.com https://ssl.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://stats.g.doubleclick.net; frame-src https://www.google.com https://www.buymeacoffee.com https://buymeacoffee.com; object-src 'none'; base-uri 'self'; form-action 'self'"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Feature Policy
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    
+    # Remove server signature
+    Header unset Server
+    Header unset X-Powered-By
+</IfModule>
+
+# Hide sensitive files
+<Files ".env">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "composer.json">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "composer.lock">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# URL Routing
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-zA-Z0-9-_]+)/?$ /view.php?id=$1 [L,QSA]
+
+# Legal Pages
+RewriteRule ^privacy/?$ /privacy.php [L,QSA]
+RewriteRule ^cookies/?$ /cookies.php [L,QSA]
+RewriteRule ^terms/?$ /terms.php [L,QSA]
+
+# API Routes
+RewriteRule ^api/create/?$ /api/create.php [L,QSA]
+RewriteRule ^api/view/([a-zA-Z0-9-_]+)/?$ /api/view.php?id=$1 [L,QSA]
+RewriteRule ^api/stats/?$ /api/stats.php [L,QSA]
+
+# Prevent access to PHP files directly (except allowed ones)
+# RewriteCond %{REQUEST_URI} !^/(index|view|create|api|assets|inludes)
+# RewriteCond %{THE_REQUEST} /([^/\s?]*\.php)[\s?] [NC]
+# RewriteRule ^ - [F,L]
+
+# Gzip Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
+# Browser Caching
+<IfModule mod_expires.c>
+    ExpiresActive on
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+
+# Limit file upload size
+<IfModule mod_php.c>
+    php_value upload_max_filesize 5M
+    php_value post_max_size 5M
+    php_value max_execution_time 300
+    php_value max_input_vars 1000
+</IfModule>
+
+
+# Prevent directory browsing
+Options -Indexes
+
+# Disable server signature
+ServerTokens Prod

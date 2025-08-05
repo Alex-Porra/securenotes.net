@@ -1,0 +1,64 @@
+{
+    "name": "securenotes/app",
+    "description": "A secure, self-destructing note sharing application",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "SecureNotes Team",
+            "email": "dev@securenotes.net"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "ext-pdo": "*",
+        "ext-openssl": "*",
+        "ext-json": "*",
+        "phpmailer/phpmailer": "^6.8",
+        "monolog/monolog": "^3.0",
+        "vlucas/phpdotenv": "^5.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6",
+        "squizlabs/php_codesniffer": "^3.7",
+        "phpstan/phpstan": "^1.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "SecureNotes\\": "src/",
+            "SecureNotes\\Tests\\": "tests/"
+        },
+        "files": [
+            "config/config.php",
+            "includes/EmailService.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SecureNotes\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "cs": "phpcs --standard=PSR12 src/",
+        "cs-fix": "phpcbf --standard=PSR12 src/",
+        "analyze": "phpstan analyse src/ --level=8",
+        "cleanup": "php cleanup.php",
+        "setup": [
+            "@composer install",
+            "php setup.php"
+        ]
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true,
+        "process-timeout": 0
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.0.x-dev"
+        }
+    }
+}

@@ -1,0 +1,118 @@
+/* Bootstrap Icons Local Fallback */
+/* Download the icons and host them locally to avoid CORS issues */
+
+/* If you want to use local icons, download the files from: */
+/* https://github.com/twbs/icons/releases/latest */
+/* And place the fonts in assets/fonts/ directory */
+
+@font-face {
+  font-family: "bootstrap-icons";
+  src: url("../fonts/bootstrap-icons.woff2") format("woff2"),
+    url("../fonts/bootstrap-icons.woff") format("woff");
+  font-display: swap;
+}
+
+[class^="bi-"],
+[class*=" bi-"] {
+  font-family: "bootstrap-icons" !important;
+  font-style: normal;
+  font-weight: normal !important;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: -.125em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Alternative: Use CSS-only icons instead of icon fonts */
+/* This provides fallback icons using pure CSS */
+
+.icon-shield::before {
+  content: "🛡️";
+  font-style: normal;
+}
+
+.icon-lock::before {
+  content: "🔒";
+  font-style: normal;
+}
+
+.icon-fire::before {
+  content: "🔥";
+  font-style: normal;
+}
+
+.icon-eye-slash::before {
+  content: "👁️";
+  font-style: normal;
+}
+
+.icon-key::before {
+  content: "🔑";
+  font-style: normal;
+}
+
+.icon-clock::before {
+  content: "⏰";
+  font-style: normal;
+}
+
+.icon-bell::before {
+  content: "🔔";
+  font-style: normal;
+}
+
+.icon-check-circle::before {
+  content: "✅";
+  font-style: normal;
+}
+
+.icon-exclamation-triangle::before {
+  content: "⚠️";
+  font-style: normal;
+}
+
+.icon-clipboard::before {
+  content: "📋";
+  font-style: normal;
+}
+
+.icon-plus-circle::before {
+  content: "➕";
+  font-style: normal;
+}
+
+.icon-arrow-left::before {
+  content: "←";
+  font-style: normal;
+}
+
+.icon-unlock::before {
+  content: "🔓";
+  font-style: normal;
+}
+
+.icon-envelope::before {
+  content: "✉️";
+  font-style: normal;
+}
+
+/* SVG Icon Fallbacks */
+.svg-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+  fill: currentColor;
+}
+
+.svg-icon-lg {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.svg-icon-xl {
+  width: 2em;
+  height: 2em;
+}

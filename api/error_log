@@ -1,0 +1,7 @@
+[10-Jun-2025 06:59:31 UTC] PHP Fatal error:  Uncaught Error: Undefined class constant 'MYSQL_ATTR_SSL_VERIFY_SERVER_CERT' in /home/codifyco/public_html/maillater.com/config/config.php:91
+Stack trace:
+#0 /home/codifyco/public_html/maillater.com/config/config.php(105): Database->__construct()
+#1 /home/codifyco/public_html/maillater.com/config/config.php(186): Database::getInstance()
+#2 /home/codifyco/public_html/maillater.com/api/create.php(21): isRateLimited('155.93.222.40', 'create')
+#3 {main}
+  thrown in /home/codifyco/public_html/maillater.com/config/config.php on line 91
