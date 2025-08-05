@@ -127,7 +127,7 @@ CREATE TABLE email_notifications (
 
 ---
 
-## <Version History
+## Version History
 
 ### v2.1.0 (Latest)
 - Added FAQ page with comprehensive Q&A 
