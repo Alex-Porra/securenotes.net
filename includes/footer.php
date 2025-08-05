@@ -36,7 +36,7 @@
                 <ul class="list-unstyled footer-links">
                     <li><a href="/donate" class="donateBtnFooter"><i class="bi bi-cup-hot-fill me-2"></i>Donate</a></li>
                     <li><a href="<?php echo APP_URL; ?>/blog/"><i class="bi bi-journal-text me-2"></i>Blog</a></li>
-                    <li><a href="#"><i class="bi bi-github me-2"></i>GitHub</a></li>
+                    <li><a href="https://github.com/Alex-Porra/securenotes.net?tab=readme-ov-file#securenotesnet"><i class="bi bi-github me-2"></i>GitHub</a></li>
                 </ul>
             </div>
         </div>
