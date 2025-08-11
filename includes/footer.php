@@ -51,6 +51,7 @@
         </div>
     </div>
 </footer>
+
 <!-- Bootstrap JS -->
 <script src="<?php echo APP_URL; ?>/assets/js/bootstrap.bundle.min.js"></script>
 <!-- Custom JS -->

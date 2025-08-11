@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeEmailNotificationHandler();
     initializeCopyFunctionality();
     initializeFormValidation();
+    initializeSmoothScrollWithOffset();
 });
 
 /**
@@ -89,11 +90,11 @@ async function handleNoteCreation(e) {
         updateCharacterCount();
 
         // Scroll to success message
-        successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        scrollToElementWithOffset(successDiv);
 
     } catch (error) {
         displayError(error.message);
-        errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        scrollToElementWithOffset(errorDiv);
     } finally {
         // Re-enable submit button
         submitBtn.disabled = false;
@@ -385,6 +386,8 @@ function smoothScrollTo(element) {
     }
 }
 
+
+
 /**
  * Show loading state for buttons
  */
@@ -552,3 +555,52 @@ Best regards`;
         }
     }
 });
+
+/**
+ * Initialize smooth scroll with header offset for anchor links
+ */
+function initializeSmoothScrollWithOffset() {
+    // Handle anchor links
+    document.addEventListener('click', function (e) {
+        const target = e.target.closest('a[href^="#"]');
+        if (!target) return;
+
+        const href = target.getAttribute('href');
+        if (href === '#') return;
+
+        e.preventDefault();
+
+        const targetElement = document.querySelector(href);
+        if (targetElement) {
+            scrollToElementWithOffset(targetElement);
+        }
+    });
+
+    // Handle URL hash on page load
+    if (window.location.hash) {
+        setTimeout(() => {
+            const targetElement = document.querySelector(window.location.hash);
+            if (targetElement) {
+                scrollToElementWithOffset(targetElement);
+            }
+        }, 100);
+    }
+}
+
+/**
+ * Scroll to element with sticky header offset
+ */
+function scrollToElementWithOffset(element) {
+    if (!element) return;
+
+    const navbar = document.querySelector('.navbar.sticky-top');
+    const offset = navbar ? navbar.offsetHeight + 20 : 80; // 20px extra padding
+
+    const elementPosition = element.offsetTop;
+    const offsetPosition = elementPosition - offset;
+
+    window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+    });
+}
