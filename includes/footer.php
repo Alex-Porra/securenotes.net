@@ -52,7 +52,7 @@
     </div>
 </footer>
 <!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo APP_URL; ?>/assets/js/bootstrap.bundle.min.js"></script>
 <!-- Custom JS -->
 <script src="<?php echo APP_URL; ?>/assets/js/app.js"></script>
 <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="porra" data-description="Support me on Buy me a coffee!" data-message="" data-color="#667eea" data-position="Right" data-x_margin="18" data-y_margin="18"></script>

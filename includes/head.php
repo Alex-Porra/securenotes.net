@@ -1,5 +1,5 @@
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo APP_URL; ?>/assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons - with fallback -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" onerror="this.onerror=null;this.href='assets/css/bootstrap-icons.css';">
     <!-- Custom CSS - Load AFTER Bootstrap to override -->
